@@ -21,3 +21,4 @@ Los campos se consideran datos personales cuando están relacionados con una per
 El nivel de acceso depende de la sensibilidad de la información y de las funciones de cada usuario. Por ejemplo, el RFC y el teléfono requieren mayores restricciones que la fecha de registro. La retención debe limitarse al tiempo necesario para cumplir la finalidad del sistema y las obligaciones legales aplicables. Cuando los datos dejen de ser necesarios, deben eliminarse o bloquearse de forma segura cuando corresponda.
 
 Los periodos de retención son criterios generales y deben ajustarse a las políticas de la organización y a las disposiciones legales aplicables.
+

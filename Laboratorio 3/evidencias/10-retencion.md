@@ -43,4 +43,4 @@ La organización debería determinar:
 
 La organización no debería conservar todos los datos de sus clientes indefinidamente solo porque podrían ser útiles en el futuro. Debe establecer periodos de retención según la finalidad de cada dato y las obligaciones aplicables. Cuando la información deje de ser necesaria, deberá eliminarse, anonimizarse o bloquearse según corresponda.
 
-Una política documentada permite reducir riesgos, proteger la privacidad de los clientes y administrar los datos de manera responsable.
+Una política documentada permite reducir riesgos, proteger la privacidad de los clientes y administrar los datos de manera responsable.     

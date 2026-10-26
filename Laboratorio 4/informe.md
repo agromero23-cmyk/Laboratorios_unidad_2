@@ -137,3 +137,62 @@ Las contraseñas fuertes ayudan a proteger las cuentas, pero no sustituyen las r
 ## Conclusión
 
 La revisión de las reglas de `pg_hba.conf` permite identificar cómo se controla el acceso a PostgreSQL y detectar configuraciones que podrían representar riesgos de seguridad. Las medidas correctivas deben basarse en los resultados obtenidos y en las necesidades reales del sistema.
+
+
+# Actividad 5 — Analizar una regla permisiva
+
+## Objetivo
+
+Analizar una regla de acceso de PostgreSQL que permite conexiones desde cualquier dirección IPv4 e identificar los riesgos que representa.
+
+## Regla analizada
+
+```text
+host    all    all    0.0.0.0/0    scram-sha-256
+```
+
+## Análisis de la regla
+
+### 1. ¿Qué bases de datos permite?
+
+Permite conexiones a todas las bases de datos, siempre que se cumplan las demás condiciones de autenticación y acceso.
+
+### 2. ¿Qué usuarios permite?
+
+Permite conexiones de cualquier usuario de PostgreSQL que pueda autenticarse y cumpla las condiciones de la regla.
+
+### 3. ¿Qué direcciones de origen permite?
+
+La dirección `0.0.0.0/0` representa todas las direcciones IPv4. Por lo tanto, la regla no restringe el origen a una red específica.
+
+### 4. ¿Qué método de autenticación utiliza?
+
+Utiliza `scram-sha-256`, un método de autenticación basado en contraseñas que ofrece una protección más robusta que métodos heredados como MD5.
+
+### 5. ¿Por qué puede representar una exposición innecesaria?
+
+Porque permite intentos de conexión desde cualquier origen IPv4 y no limita el acceso a las redes, bases de datos y usuarios que realmente necesitan conectarse.
+
+Aunque utiliza un método de autenticación seguro, esto no elimina los riesgos de una regla demasiado amplia.
+
+### 6. ¿Qué información se necesita para restringirla?
+
+Se necesita conocer:
+
+- La dirección IP o red de origen autorizada.
+- La base de datos que necesita utilizarse.
+- El usuario específico que requiere acceso.
+- El método de autenticación compatible con el entorno.
+
+## Registro de la regla
+
+- **Regla actual:** `host all all 0.0.0.0/0 scram-sha-256`
+- **Problema:** Permite conexiones desde cualquier dirección IPv4.
+- **Origen que realmente necesita acceso:** Pendiente de confirmar.
+- **Base de datos:** Pendiente de confirmar.
+- **Usuario:** Pendiente de confirmar.
+- **Regla propuesta:** Se definirá cuando se conozcan el origen, la base de datos y el usuario autorizados.
+
+## Conclusión
+
+Una regla puede utilizar autenticación segura y aun así permitir una exposición de red innecesaria. Para mejorar la seguridad de PostgreSQL, las conexiones deben limitarse a los usuarios, bases de datos y orígenes que realmente necesitan acceso.

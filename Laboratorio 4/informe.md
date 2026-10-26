@@ -26,3 +26,45 @@ Describe las conexiones que aparecen en el resultado de `pg_stat_activity`.
 **¿Por qué conocer la superficie de ataque debe preceder al hardening?**
 
 Primero es necesario identificar los servicios, puertos, conexiones, usuarios y configuraciones que pueden representar riesgos. Con esa información se pueden detectar exposiciones innecesarias y elegir medidas de seguridad apropiadas sin afectar las conexiones legítimas.
+
+# Actividad 2 — Identificar los archivos de configuración
+
+## Objetivo
+
+Identificar las rutas de los principales archivos y directorios de
+configuración de PostgreSQL.
+
+## Resultados
+
+| Parámetro | Resultado |
+|---|---|
+| config_file | |
+| hba_file | |
+| ident_file | |
+| data_directory | |
+| log_directory | |
+| log_connections | |
+| log_disconnections | |
+
+## Análisis
+
+### 1. ¿Por qué es importante conocer la ubicación de estos archivos?
+
+Es importante conocer las rutas para localizar la configuración de
+PostgreSQL, revisar sus permisos y asegurarse de modificar los archivos
+correctos cuando sea necesario.
+
+### 2. ¿Qué archivo controla las reglas de acceso?
+
+El archivo pg_hba.conf contiene las reglas que determinan qué conexiones
+pueden autenticarse, para qué bases de datos, con qué usuarios y mediante
+qué métodos de autenticación.
+
+### 3. ¿Por qué deben protegerse los archivos de configuración?
+
+Porque una modificación no autorizada podría debilitar la seguridad,
+permitir accesos indebidos o afectar el funcionamiento del servidor.
+
+## Conclusión
+
+Completar después de ejecutar las consultas y analizar los resultados.

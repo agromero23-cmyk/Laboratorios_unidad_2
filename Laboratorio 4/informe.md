@@ -70,32 +70,70 @@ permitir accesos indebidos o afectar el funcionamiento del servidor.
 Completar después de ejecutar las consultas y analizar los resultados.
 
 
+
 # Actividad 3 — Revisar listen_addresses
 
 ## Objetivo
 
-Identificar las interfaces de red en las que PostgreSQL acepta conexiones y evaluar si su configuración puede representar un riesgo de seguridad.
+Identificar las interfaces de red en las que PostgreSQL acepta conexiones y evaluar los posibles riesgos de seguridad.
 
 ## Resultado obtenido
 
-- Parámetro: `listen_addresses`
-- Valor encontrado: (completar con el resultado de pgAdmin)
+- **Parámetro:** `listen_addresses`
+- **Valor encontrado:** `*`
 
 ## Análisis
 
 ### 1. Configuración encontrada
 
-(Escribir el valor que devolvió PostgreSQL).
+El parámetro `listen_addresses` tiene el valor `*`, lo que indica que PostgreSQL escucha en todas las interfaces de red disponibles.
 
 ### 2. Interfaces necesarias
 
-Las interfaces necesarias son aquellas que utilizan las aplicaciones y los usuarios autorizados para conectarse a PostgreSQL.
+Solo deben habilitarse las interfaces necesarias para que las aplicaciones y los usuarios autorizados puedan conectarse al servidor.
 
 ### 3. Interfaces innecesarias
 
-Se consideran innecesarias las interfaces que permiten conexiones que no forman parte de los requerimientos del sistema.
+Las interfaces que no se necesitan para el funcionamiento del sistema deben evitarse, ya que pueden aumentar la superficie de exposición del servicio.
 
 ### 4. ¿Qué arquitectura reduce mejor la exposición?
 
-La arquitectura que mantiene PostgreSQL dentro de una red privada y limita el acceso mediante un firewall reduce mejor la exposición. De esta manera, se evita que el servicio quede directamente accesible desde Internet.
+Una arquitectura con PostgreSQL dentro de una red privada, acceso limitado mediante firewall y conexiones permitidas únicamente desde equipos autorizados reduce la exposición del servidor.
 
+
+## Conclusión
+
+Se identificó que PostgreSQL escucha en todas las interfaces de red disponibles. Esta configuración puede ser necesaria en determinados entornos, pero debe acompañarse de controles de acceso y reglas de red para evitar conexiones no autorizadas.
+
+
+# Actividad 4 — Revisar pg_hba.conf
+
+## Objetivo
+
+Identificar las reglas de autenticación y acceso de PostgreSQL para conocer qué usuarios, bases de datos y direcciones de red pueden conectarse al servidor.
+
+## Resultados
+
+- Reglas locales identificadas: Pendiente de revisar.
+- Reglas IPv4 identificadas: Pendiente de revisar.
+- Reglas IPv6 identificadas: Pendiente de revisar.
+- Métodos de autenticación encontrados: Pendiente de revisar.
+- Redes demasiado amplias detectadas: Pendiente de revisar.
+
+## Análisis
+
+### 1. ¿Qué controla pg_hba.conf?
+
+El archivo `pg_hba.conf` controla las conexiones que pueden autenticarse en PostgreSQL. Para ello, considera el tipo de conexión, la base de datos, el usuario, la dirección de origen y el método de autenticación.
+
+### 2. ¿Por qué son riesgosas las redes demasiado amplias?
+
+Las redes demasiado amplias pueden permitir intentos de conexión desde muchas direcciones. Por eso, es recomendable limitar el acceso a las redes y equipos que realmente necesitan utilizar el servidor.
+
+### 3. ¿Por qué no basta con utilizar contraseñas fuertes?
+
+Las contraseñas fuertes ayudan a proteger las cuentas, pero no sustituyen las restricciones de red, los métodos de autenticación seguros ni una configuración adecuada de los permisos.
+
+## Conclusión
+
+La revisión de las reglas de `pg_hba.conf` permite identificar cómo se controla el acceso a PostgreSQL y detectar configuraciones que podrían representar riesgos de seguridad. Las medidas correctivas deben basarse en los resultados obtenidos y en las necesidades reales del sistema.

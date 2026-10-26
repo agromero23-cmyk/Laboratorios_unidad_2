@@ -68,3 +68,34 @@ permitir accesos indebidos o afectar el funcionamiento del servidor.
 ## Conclusión
 
 Completar después de ejecutar las consultas y analizar los resultados.
+
+
+# Actividad 3 — Revisar listen_addresses
+
+## Objetivo
+
+Identificar las interfaces de red en las que PostgreSQL acepta conexiones y evaluar si su configuración puede representar un riesgo de seguridad.
+
+## Resultado obtenido
+
+- Parámetro: `listen_addresses`
+- Valor encontrado: (completar con el resultado de pgAdmin)
+
+## Análisis
+
+### 1. Configuración encontrada
+
+(Escribir el valor que devolvió PostgreSQL).
+
+### 2. Interfaces necesarias
+
+Las interfaces necesarias son aquellas que utilizan las aplicaciones y los usuarios autorizados para conectarse a PostgreSQL.
+
+### 3. Interfaces innecesarias
+
+Se consideran innecesarias las interfaces que permiten conexiones que no forman parte de los requerimientos del sistema.
+
+### 4. ¿Qué arquitectura reduce mejor la exposición?
+
+La arquitectura que mantiene PostgreSQL dentro de una red privada y limita el acceso mediante un firewall reduce mejor la exposición. De esta manera, se evita que el servicio quede directamente accesible desde Internet.
+
